@@ -1,31 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import ContactItem from "./ContactItem.tsx";
+import ContactModal from "./ContactModal.tsx";
 import axiosApi from "../axiosApi";
 
 const Home: React.FC = () => {
-    const [contacts, setContacts] = useState<any[]>([]);
+    const [contactData, setContactData] = useState<any>(null);
+    const [selectedContact, setSelectedContact] = useState<any>(null);
 
     useEffect(() => {
-        const fetchContacts = async () => {
+        const fetchContactData = async () => {
             try {
                 const response = await axiosApi.get('/contacts.json');
                 if (response.data) {
-                    const contactsData = Object.values(response.data);
-                    setContacts(contactsData);
+                    setContactData(response.data);
                 }
             } catch (error) {
                 console.error('Ошибка при загрузке данных:', error);
             }
         };
 
-        fetchContacts();
+        fetchContactData();
     }, []);
+
+    const handleShowContactModal = (contact: any) => {
+        setSelectedContact(contact);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedContact(null);
+    };
 
     return (
         <div>
-            {contacts.map(contact => (
-                <ContactItem key={contact.id} contact={contact} />
+            {contactData && Object.keys(contactData).map((contactId: string) => (
+                <div key={contactId} onClick={() => handleShowContactModal(contactData[contactId])}>
+                    <ContactItem contact={contactData[contactId]} />
+                </div>
             ))}
+            {selectedContact && <ContactModal contact={selectedContact} onClose={handleCloseModal} />}
         </div>
     );
 };
