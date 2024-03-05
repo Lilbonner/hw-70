@@ -37,7 +37,7 @@ const Home: React.FC = () => {
                     <ContactItem contact={contactData[contactId]} />
                 </div>
             ))}
-            {selectedContact && <ContactModal contact={selectedContact} onClose={handleCloseModal} />}
+            {selectedContact && <ContactModal contact={selectedContact} closeModal={handleCloseModal} />}
         </div>
     );
 };
