@@ -1,9 +1,10 @@
 import React from 'react';
+import ContactItem from "./ContactItem.tsx";
 
 const Home:React.FC = () => {
     return (
         <div>
-          Home
+          <ContactItem/>
         </div>
     );
 };

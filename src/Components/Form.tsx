@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const Form: React.FC = () => {
     return (
-        <div className="w-80 h-fit ml-10 mt-10 block border-2 border-black ">
+        <div className="w-80 h-fit ml-10 mt-10">
             <h2 className="text-4xl mb-10">Add/Edit contact</h2>
             <div className="mb-4">
                 <label className="">Name: <input className="border-2 border-black rounded-md ml-2"/></label>
@@ -16,6 +16,9 @@ const Form: React.FC = () => {
             </div>
             <div className="mb-4">
             <label>Photo: <input className="border-2 border-black rounded-md ml-2"/></label>
+            </div>
+            <div className="mb-4">
+                <label>Photo preview: <img src="" alt="" className="border-2 border-black rounded-md ml-2 w-fit h-fit"/></label>
             </div>
             <div className="mt-14">
                 <button className="w-14 bg-gray-300 ml-14">save</button>
